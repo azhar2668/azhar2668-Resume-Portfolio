@@ -630,29 +630,30 @@ footer {
           <a href="#exp"     class="btn-b">&#128196; Experience</a>
         </div>
       </div>
-      <div class="terminal">
-        <div class="t-bar">
-          <div class="dot" style="background:#ef4444"></div>
-          <div class="dot" style="background:#f59e0b"></div>
-          <div class="dot" style="background:#10b981"></div>
-          <div class="t-title">bash ~ /home/azhar</div>
-        </div>
-        <div class="t-body">
-          <span class="row"><span class="p">azhar@devops</span><span class="c">:</span><span class="k">~</span><span class="c">$</span> <span>whoami</span></span>
-          <span class="out"><span class="k">name</span>: <span class="v">"Mahamadajharuddin Mulla"</span></span>
-          <span class="out"><span class="k">role</span>: <span class="v">"Senior DevOps Engineer"</span></span>
-          <span class="out"><span class="k">exp </span>: <span class="v">"10+ years"</span></span>
-          <span class="out"><span class="k">base</span>: <span class="v">"Karnataka, India"</span></span>
-          <span class="out"><span class="k">stat</span>: <span class="v" style="color:var(--green)">"open_to_work"</span></span>
-          <span class="row" style="margin-top:.4em"><span class="p">azhar@devops</span><span class="c">:</span><span class="k">~</span><span class="c">$</span> <span>kubectl get skills</span></span>
-          <span class="out"><span class="c">NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LEVEL&nbsp;&nbsp;&nbsp;&nbsp;YRS</span></span>
-          <span class="out"><span class="k">ci-cd&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="v">expert&nbsp;&nbsp;&nbsp;</span>6y</span>
-          <span class="out"><span class="k">kubernetes&nbsp;&nbsp;&nbsp;</span><span class="v">expert&nbsp;&nbsp;&nbsp;</span>5y</span>
-          <span class="out"><span class="k">aws-cloud&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="v">expert&nbsp;&nbsp;&nbsp;</span>6y</span>
-          <span class="out"><span class="k">terraform&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="v">advanced&nbsp;</span>4y</span>
-          <span class="out"><span class="k">servicenow&nbsp;&nbsp;&nbsp;</span><span class="v">advanced&nbsp;</span>3y</span>
-          <span class="row" style="margin-top:.35em"><span class="p">azhar@devops</span><span class="c">:</span><span class="k">~</span><span class="c">$</span> <span class="cur"></span></span>
-        </div>
+    </div>
+    <!-- TERMINAL -->
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="term-dot" style="background:#ef4444"></div>
+        <div class="term-dot" style="background:#f59e0b"></div>
+        <div class="term-dot" style="background:#10b981"></div>
+        <div class="term-title">bash ~ /home/azhar</div>
+      </div>
+      <div class="term-body">
+        <div><span class="t-prompt">azhar@devops</span><span class="t-comment">:</span><span class="t-key">~</span><span class="t-comment">$</span> <span class="t-cmd">whoami --verbose</span></div>
+        <div class="t-out"><span class="t-key">name</span>: <span class="t-val">"Mahamadajharuddin Mulla"</span></div>
+        <div class="t-out"><span class="t-key">role</span>: <span class="t-val">"Senior DevOps Engineer"</span></div>
+        <div class="t-out"><span class="t-key">location</span>: <span class="t-val">"Karnataka, India"</span></div>
+        <div class="t-out"><span class="t-key">experience</span>: <span class="t-val">"10+ years"</span></div>
+        <div class="t-out"><span class="t-key">status</span>: <span class="t-val" style="color:var(--green)">"open_to_opportunities"</span></div>
+        <div style="margin-top:.5rem"><span class="t-prompt">azhar@devops</span><span class="t-comment">:</span><span class="t-key">~</span><span class="t-comment">$</span> <span class="t-cmd">kubectl get expertise</span></div>
+        <div class="t-out"><span class="t-comment">NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LEVEL&nbsp;&nbsp;&nbsp;&nbsp;AGE</span></div>
+        <div class="t-out"><span class="t-key">ci-cd-pipelines&nbsp;</span><span class="t-val">expert&nbsp;&nbsp;&nbsp;</span><span>6y</span></div>
+        <div class="t-out"><span class="t-key">kubernetes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val">expert&nbsp;&nbsp;&nbsp;</span><span>5y</span></div>
+        <div class="t-out"><span class="t-key">aws-cloud&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val">expert&nbsp;&nbsp;&nbsp;</span><span>6y</span></div>
+        <div class="t-out"><span class="t-key">terraform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val">advanced&nbsp;</span><span>4y</span></div>
+        <div class="t-out"><span class="t-key">servicenow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val">advanced&nbsp;</span><span>3y</span></div>
+        <div style="margin-top:.5rem"><span class="t-prompt">azhar@devops</span><span class="t-comment">:</span><span class="t-key">~</span><span class="t-comment">$</span> <span class="t-cursor"></span></div>
       </div>
     </div>
   </div>
@@ -812,14 +813,29 @@ footer {
       <div class="sec-line"></div>
     </div>
     <div class="contact-grid">
-      <div>
-        <p class="contact-intro">Available for senior DevOps, Cloud Infrastructure, and SRE roles. Open to full-time, contract, or consulting engagements across India and remote globally.</p>
-        <div class="contact-items">
-          <div class="c-item"><div class="c-icon">✉</div><div><div class="c-lbl">Email</div><div class="c-val"><a href="mailto:mahdajharmulla@gmail.com">mahdajharmulla&#64;gmail.com</a></div></div></div>
-          <div class="c-item"><div class="c-icon">📞</div><div><div class="c-lbl">Phone</div><div class="c-val"><a href="tel:+918197602254">+91 81976 02254</a></div></div></div>
-          <div class="c-item"><div class="c-icon">📍</div><div><div class="c-lbl">Location</div><div class="c-val">Karnataka, India</div></div></div>
-          <div class="c-item"><div class="c-icon">💼</div><div><div class="c-lbl">Current</div><div class="c-val">ITDaga Consulting Pvt Ltd</div></div></div>
-          <div class="c-item"><div class="c-icon">🔗</div><div><div class="c-lbl">Portfolio</div><div class="c-val"><a href="https://azhar2668portfolio.netlify.app" target="_blank">azhar2668portfolio.netlify.app</a></div></div></div>
+      <div class="contact-info reveal-l">
+        <p style="font-size:.95rem;color:var(--tx2);line-height:1.7;margin-bottom:1rem;">
+          Available for senior DevOps, Cloud Infrastructure, and SRE roles. Open to full-time, contract, or consulting engagements.
+        </p>
+        <div class="ci-item">
+          <div class="ci-icon">&#128231;</div>
+          <div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:mahdajharmulla@gmail.com">mahdajharmulla&#64;gmail.com</a></div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">&#128222;</div>
+          <div><div class="ci-lbl">Phone</div><div class="ci-val"><a href="tel:+918197602254">+91 81976 02254</a></div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">&#128205;</div>
+          <div><div class="ci-lbl">Location</div><div class="ci-val">Karnataka, India</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">&#128188;</div>
+          <div><div class="ci-lbl">Current</div><div class="ci-val">ITDaga Consulting Pvt Ltd</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">&#128279;</div>
+          <div><div class="ci-lbl">Portfolio</div><div class="ci-val"><a href="https://azhar2668portfolio.netlify.app" target="_blank">azhar2668portfolio.netlify.app</a></div></div>
         </div>
       </div>
       <div class="form">
