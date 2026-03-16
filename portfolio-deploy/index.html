@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mahamadajharuddin Mulla — Senior DevOps Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN DIRECTION: Industrial Terminal — 
+   Dark engineering aesthetic, monospace accents,
+   circuit-board geometry, amber/orange on near-black.
+   Feels like a real DevOps engineer built this.
+═══════════════════════════════════════════ */
+:root{
+  --bg:#080c12;--bg2:#0d1320;--bg3:#111a28;
+  --border:#1a2535;--border2:#243040;
+  --amber:#f59e0b;--amber2:#fbbf24;--amberglow:rgba(245,158,11,.25);
+  --cyan:#22d3ee;--cyanglow:rgba(34,211,238,.2);
+  --green:#10b981;--greenglow:rgba(16,185,129,.2);
+  --red:#ef4444;--blue:#3b82f6;
+  --tx:#e2e8f0;--tx2:#94a3b8;--tx3:#475569;
+  --ff:'DM Sans',sans-serif;
+  --fm:'JetBrains Mono',monospace;
+  --fd:'Bebas Neue',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--tx);font-family:var(--ff);overflow-x:hidden;cursor:none;}
+
+/* CURSOR */
+#cur{position:fixed;width:8px;height:8px;background:var(--amber);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .1s,background .2s;mix-blend-mode:screen;}
+#cur2{position:fixed;width:32px;height:32px;border:1px solid rgba(245,158,11,.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all .18s ease;mix-blend-mode:screen;}
+
+/* GRID BG */
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(245,158,11,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(245,158,11,.025) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,rgba(245,158,11,.06) 0%,transparent 60%),radial-gradient(ellipse 60% 50% at 80% 80%,rgba(34,211,238,.04) 0%,transparent 60%);pointer-events:none;z-index:0;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;align-items:center;justify-content:space-between;background:rgba(8,12,18,.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);}
+.nav-logo{font-family:var(--fd);font-size:1.4rem;letter-spacing:.08em;color:var(--amber);text-shadow:0 0 20px var(--amberglow);}
+.nav-logo span{color:var(--tx2);font-size:.9rem;}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{font-family:var(--fm);font-size:.7rem;color:var(--tx2);text-decoration:none;text-transform:uppercase;letter-spacing:.12em;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--amber);transition:width .25s;}
+.nav-links a:hover{color:var(--amber);}
+.nav-links a:hover::after{width:100%;}
+.nav-status{display:flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.65rem;color:var(--green);}
+.nav-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite;}
+
+/* HERO */
+.hero{position:relative;z-index:5;min-height:100vh;display:flex;align-items:center;padding:0 2.5rem;padding-top:80px;}
+.hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 420px;gap:4rem;align-items:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--fm);font-size:.65rem;color:var(--amber);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);padding:.3rem .75rem;border-radius:3px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:1.2rem;}
+.hero-badge::before{content:'>';margin-right:.2rem;}
+.hero-name{font-family:var(--fd);font-size:clamp(3.5rem,7vw,6.5rem);line-height:.92;letter-spacing:.04em;color:#fff;margin-bottom:.5rem;}
+.hero-name .line2{color:var(--amber);text-shadow:0 0 40px var(--amberglow);}
+.hero-role{font-family:var(--fm);font-size:.85rem;color:var(--cyan);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:.75rem;}
+.hero-role::before{content:'';width:32px;height:1px;background:var(--cyan);}
+.hero-desc{font-size:1rem;color:var(--tx2);line-height:1.75;max-width:520px;margin-bottom:2rem;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;background:var(--amber);color:#000;font-family:var(--fm);font-size:.72rem;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;border:none;cursor:pointer;transition:all .22s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+.btn-primary:hover{background:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,158,11,.4);}
+.btn-sec{display:inline-flex;align-items:center;gap:.5rem;padding:.7rem 1.5rem;background:transparent;color:var(--tx);font-family:var(--fm);font-size:.72rem;font-weight:600;text-decoration:none;text-transform:uppercase;letter-spacing:.1em;border:1px solid var(--border2);cursor:pointer;transition:all .22s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));}
+.btn-sec:hover{border-color:var(--amber);color:var(--amber);transform:translateY(-2px);}
+
+/* TERMINAL CARD */
+.terminal{background:var(--bg2);border:1px solid var(--border2);border-radius:4px;overflow:hidden;box-shadow:0 0 60px rgba(0,0,0,.6),0 0 120px rgba(245,158,11,.05);}
+.term-bar{background:var(--bg3);padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--border);}
+.term-dot{width:10px;height:10px;border-radius:50%;}
+.term-title{font-family:var(--fm);font-size:.62rem;color:var(--tx3);margin-left:.5rem;flex:1;}
+.term-body{padding:1.25rem;font-family:var(--fm);font-size:.72rem;line-height:2;}
+.t-prompt{color:var(--amber);}
+.t-cmd{color:var(--tx);}
+.t-out{color:var(--tx2);padding-left:1rem;}
+.t-key{color:var(--cyan);}
+.t-val{color:var(--green);}
+.t-comment{color:var(--tx3);}
+.t-cursor{display:inline-block;width:8px;height:14px;background:var(--amber);animation:blink .9s step-end infinite;vertical-align:middle;margin-left:2px;}
+
+/* METRICS BAR */
+.metrics{position:relative;z-index:5;display:flex;justify-content:center;gap:0;padding:0 2.5rem;margin-bottom:0;}
+.metric{flex:1;max-width:240px;padding:1.5rem 2rem;background:var(--bg2);border:1px solid var(--border);border-right:none;position:relative;overflow:hidden;transition:all .25s;}
+.metric:last-child{border-right:1px solid var(--border);}
+.metric:hover{background:var(--bg3);border-color:var(--amber);}
+.metric::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--amber);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.metric:hover::before{transform:scaleX(1);}
+.m-num{font-family:var(--fd);font-size:2.4rem;color:var(--amber);line-height:1;text-shadow:0 0 20px var(--amberglow);}
+.m-lbl{font-family:var(--fm);font-size:.6rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.1em;margin-top:.25rem;}
+
+/* SECTION BASE */
+section{position:relative;z-index:5;padding:5rem 2.5rem;}
+.sec-wrap{max-width:1100px;margin:0 auto;}
+.sec-head{display:flex;align-items:center;gap:1rem;margin-bottom:3rem;}
+.sec-num{font-family:var(--fm);font-size:.65rem;color:var(--amber);opacity:.6;}
+.sec-title{font-family:var(--fd);font-size:2.5rem;letter-spacing:.06em;color:#fff;}
+.sec-line{flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1px;background:var(--border);}
+.skill-card{background:var(--bg2);padding:1.5rem;transition:all .22s;position:relative;overflow:hidden;}
+.skill-card::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--amber);transition:width .3s;}
+.skill-card:hover{background:var(--bg3);}
+.skill-card:hover::after{width:100%;}
+.sk-icon{font-size:1.6rem;margin-bottom:.75rem;}
+.sk-name{font-family:var(--fm);font-size:.8rem;color:var(--tx);font-weight:600;margin-bottom:.5rem;}
+.sk-bar-wrap{height:3px;background:var(--border2);border-radius:2px;overflow:hidden;margin-bottom:.4rem;}
+.sk-bar{height:100%;background:linear-gradient(90deg,var(--amber),var(--amber2));border-radius:2px;width:0;transition:width 1.4s cubic-bezier(.34,1.56,.64,1);}
+.sk-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.6rem;}
+.sk-tag{font-family:var(--fm);font-size:.54rem;color:var(--tx3);background:var(--bg3);border:1px solid var(--border2);padding:.1rem .38rem;border-radius:2px;}
+
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;gap:0;}
+.exp-item{display:grid;grid-template-columns:200px 1fr;gap:2.5rem;padding:2rem 0;border-bottom:1px solid var(--border);position:relative;}
+.exp-item::before{content:'';position:absolute;left:200px;top:0;bottom:0;width:1px;background:var(--border2);}
+.exp-item:last-child{border-bottom:none;}
+.exp-date{font-family:var(--fm);font-size:.65rem;color:var(--amber);padding-top:.15rem;text-align:right;padding-right:2.5rem;}
+.exp-period{display:block;color:var(--tx3);font-size:.6rem;margin-top:.25rem;}
+.exp-right{padding-left:2.5rem;}
+.exp-co{font-family:var(--fm);font-size:.65rem;color:var(--cyan);text-transform:uppercase;letter-spacing:.12em;margin-bottom:.35rem;}
+.exp-role{font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:.75rem;}
+.exp-pts{display:flex;flex-direction:column;gap:.4rem;}
+.exp-pt{font-size:.85rem;color:var(--tx2);padding-left:1rem;position:relative;line-height:1.55;}
+.exp-pt::before{content:'▹';position:absolute;left:0;color:var(--amber);font-size:.7rem;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1rem;}
+.exp-tag{font-family:var(--fm);font-size:.56rem;color:var(--amber);background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.2);padding:.12rem .42rem;border-radius:2px;}
+
+/* CERTIFICATIONS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem;}
+.cert-card{background:var(--bg2);border:1px solid var(--border);padding:1.25rem;position:relative;overflow:hidden;transition:all .22s;cursor:default;}
+.cert-card:hover{border-color:var(--amber);background:var(--bg3);transform:translateY(-3px);}
+.cert-card::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle,rgba(245,158,11,.04) 0%,transparent 60%);opacity:0;transition:opacity .3s;}
+.cert-card:hover::before{opacity:1;}
+.cert-badge{font-size:2rem;margin-bottom:.65rem;}
+.cert-name{font-size:.88rem;font-weight:600;color:#fff;margin-bottom:.3rem;}
+.cert-issuer{font-family:var(--fm);font-size:.6rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.1em;}
+.cert-status{display:inline-flex;align-items:center;gap:.3rem;font-family:var(--fm);font-size:.58rem;color:var(--green);background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.18);padding:.1rem .38rem;border-radius:2px;margin-top:.5rem;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start;}
+.contact-info{display:flex;flex-direction:column;gap:1rem;}
+.ci-item{display:flex;align-items:center;gap:1rem;padding:1rem;background:var(--bg2);border:1px solid var(--border);transition:border-color .2s;}
+.ci-item:hover{border-color:var(--amber);}
+.ci-icon{width:38px;height:38px;background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.15);display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+.ci-lbl{font-family:var(--fm);font-size:.58rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.1em;}
+.ci-val{font-size:.85rem;color:var(--tx);margin-top:.12rem;}
+.ci-val a{color:var(--amber);text-decoration:none;}
+/* FORM */
+.form-grid{display:flex;flex-direction:column;gap:.75rem;}
+.finp,.ftxt{width:100%;background:var(--bg2);border:1px solid var(--border2);color:var(--tx);font-family:var(--fm);font-size:.75rem;padding:.72rem 1rem;outline:none;transition:border-color .2s;resize:none;}
+.finp:focus,.ftxt:focus{border-color:var(--amber);}
+.ftxt{min-height:120px;}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.fbtn{padding:.75rem 1.8rem;background:var(--amber);color:#000;font-family:var(--fm);font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;border:none;cursor:pointer;transition:all .22s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px));align-self:flex-start;}
+.fbtn:hover{background:#fff;box-shadow:0 6px 20px rgba(245,158,11,.35);}
+
+/* FOOTER */
+footer{position:relative;z-index:5;padding:2rem 2.5rem;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.foot-l{font-family:var(--fm);font-size:.62rem;color:var(--tx3);}
+.foot-l span{color:var(--amber);}
+.foot-links{display:flex;gap:1.5rem;}
+.foot-links a{font-family:var(--fm);font-size:.62rem;color:var(--tx3);text-decoration:none;transition:color .2s;}
+.foot-links a:hover{color:var(--amber);}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.vis{opacity:1;transform:translateY(0);}
+.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .65s ease,transform .65s ease;}
+.reveal-l.vis{opacity:1;transform:translateX(0);}
+
+/* SECTION DIVIDERS */
+.div-line{position:relative;z-index:5;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:0 2.5rem;}
+
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.6;transform:scale(.8)}}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.hero-inner .hero-left{animation:slideUp .8s ease .1s both;}
+.hero-inner .terminal{animation:slideUp .8s ease .3s both;}
+
+@media(max-width:900px){
+  .hero-inner{grid-template-columns:1fr;}
+  .terminal{display:none;}
+  .exp-item{grid-template-columns:1fr;}
+  .exp-item::before{display:none;}
+  .exp-date{text-align:left;padding-right:0;}
+  .contact-grid{grid-template-columns:1fr;}
+  .metrics{flex-wrap:wrap;}
+  .metric{border-right:1px solid var(--border)!important;flex:1 1 45%;}
+  .frow{grid-template-columns:1fr;}
+}
+@media(max-width:600px){
+  nav{padding:.85rem 1.2rem;}
+  .nav-links{gap:1rem;}
+  section{padding:3.5rem 1.2rem;}
+  .hero{padding:0 1.2rem;padding-top:75px;}
+  .metrics{padding:0 1.2rem;}
+  .hero-name{font-size:3rem;}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MM<span>_DEVOPS</span></div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#certs">Certs</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-status">OPEN_TO_WORK</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="about">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">Senior DevOps &amp; Cloud Engineer</div>
+      <h1 class="hero-name">
+        MAHAMAD<br>
+        <span class="line2">AJHARUDDIN</span><br>
+        MULLA
+      </h1>
+      <div class="hero-role">10+ Years Engineering Excellence</div>
+      <p class="hero-desc">
+        Infrastructure architect specialising in CI/CD automation, Kubernetes orchestration, and cloud-native solutions. Currently building enterprise-grade DevOps pipelines at ITDaga Consulting — previously at Tata Consultancy Services.
+      </p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn-primary">&#9654; Get In Touch</a>
+        <a href="#experience" class="btn-sec">&#128196; View Experience</a>
+      </div>
+    </div>
+    <!-- TERMINAL -->
+    <div class="terminal">
+      <div class="term-bar">
+        <div class="term-dot" style="background:#ef4444"></div>
+        <div class="term-dot" style="background:#f59e0b"></div>
+        <div class="term-dot" style="background:#10b981"></div>
+        <div class="term-title">bash ~ /home/azhar</div>
+      </div>
+      <div class="term-body">
+        <div><span class="t-prompt">azhar@devops</span><span class="t-comment">:</span><span class="t-key">~</span><span class="t-comment">$</span> <span class="t-cmd">whoami --verbose</span></div>
+        <div class="t-out"><span class="t-key">name</span>: <span class="t-val">"Mahamadajharuddin Mulla"</span></div>
+        <div class="t-out"><span class="t-key">role</span>: <span class="t-val">"Senior DevOps Engineer"</span></div>
+        <div class="t-out"><span class="t-key">location</span>: <span class="t-val">"Karnataka, India"</span></div>
+        <div class="t-out"><span class="t-key">experience</span>: <span class="t-val">"10+ years"</span></div>
+        <div class="t-out"><span class="t-key">status</span>: <span class="t-val" style="color:var(--green)">"open_to_opportunities"</span></div>
+        <div style="margin-top:.5rem"><span class="t-prompt">azhar@devops</span><span class="t-comment">:</span><span class="t-key">~</span><span class="t-comment">$</span> <span class="t-cmd">kubectl get expertise</span></div>
+        <div class="t-out"><span class="t-comment">NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LEVEL&nbsp;&nbsp;&nbsp;&nbsp;AGE</span></div>
+        <div class="t-out"><span class="t-key">ci-cd-pipelines&nbsp;</span><span class="t-val">expert&nbsp;&nbsp;&nbsp;</span><span>6y</span></div>
+        <div class="t-out"><span class="t-key">kubernetes&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val">expert&nbsp;&nbsp;&nbsp;</span><span>5y</span></div>
+        <div class="t-out"><span class="t-key">aws-cloud&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val">expert&nbsp;&nbsp;&nbsp;</span><span>6y</span></div>
+        <div class="t-out"><span class="t-key">terraform&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val">advanced&nbsp;</span><span>4y</span></div>
+        <div class="t-out"><span class="t-key">servicenow&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-val">advanced&nbsp;</span><span>3y</span></div>
+        <div style="margin-top:.5rem"><span class="t-prompt">azhar@devops</span><span class="t-comment">:</span><span class="t-key">~</span><span class="t-comment">$</span> <span class="t-cursor"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- METRICS -->
+<div class="metrics" id="metrics">
+  <div class="metric reveal"><div class="m-num" id="m1">0</div><div class="m-lbl">Years Experience</div></div>
+  <div class="metric reveal" style="transition-delay:.1s"><div class="m-num" id="m2">0</div><div class="m-lbl">Projects Delivered</div></div>
+  <div class="metric reveal" style="transition-delay:.2s"><div class="m-num" id="m3">0</div><div class="m-lbl">Servers Monitored</div></div>
+  <div class="metric reveal" style="transition-delay:.3s"><div class="m-num" id="m4">0</div><div class="m-lbl">CI/CD Pipelines Built</div></div>
+  <div class="metric reveal" style="transition-delay:.4s"><div class="m-num" id="m5">0</div><div class="m-lbl">Uptime % Achieved</div></div>
+</div>
+
+<div class="div-line" style="margin-top:0"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title">TECHNICAL ARSENAL</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="skills-grid" id="skillsGrid"></div>
+  </div>
+</section>
+
+<div class="div-line"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title">EXPERIENCE</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="exp-list" id="expList"></div>
+  </div>
+</section>
+
+<div class="div-line"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title">CERTIFICATIONS</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="cert-grid" id="certGrid"></div>
+  </div>
+</section>
+
+<div class="div-line"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-wrap">
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title">CONTACT</h2>
+      <div class="sec-line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal-l">
+        <p style="font-size:.95rem;color:var(--tx2);line-height:1.7;margin-bottom:1rem;">
+          Available for senior DevOps, Cloud Infrastructure, and SRE roles. Open to full-time, contract, or consulting engagements.
+        </p>
+        <div class="ci-item">
+          <div class="ci-icon">&#128231;</div>
+          <div><div class="ci-lbl">Email</div><div class="ci-val"><a href="mailto:mahdajharmulla@gmail.com">mahdajharmulla&#64;gmail.com</a></div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">&#128222;</div>
+          <div><div class="ci-lbl">Phone</div><div class="ci-val"><a href="tel:+918197602254">+91 81976 02254</a></div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">&#128205;</div>
+          <div><div class="ci-lbl">Location</div><div class="ci-val">Karnataka, India</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">&#128188;</div>
+          <div><div class="ci-lbl">Current</div><div class="ci-val">ITDaga Consulting Pvt Ltd</div></div>
+        </div>
+        <div class="ci-item">
+          <div class="ci-icon">&#128279;</div>
+          <div><div class="ci-lbl">Portfolio</div><div class="ci-val"><a href="https://azhar2668portfolio.netlify.app" target="_blank">azhar2668portfolio.netlify.app</a></div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="form-grid">
+          <div class="frow">
+            <input class="finp" type="text" placeholder="Your Name">
+            <input class="finp" type="email" placeholder="Your Email">
+          </div>
+          <input class="finp" type="text" placeholder="Subject">
+          <textarea class="ftxt" placeholder="Your Message..."></textarea>
+          <button class="fbtn" onclick="this.textContent='&#10003; Sent!';setTimeout(()=>this.textContent='&#9654; Send Message',2500)">&#9654; Send Message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-l">&#169; 2026 <span>Mahamadajharuddin Mulla</span> &nbsp;&#183;&nbsp; Built with precision</div>
+  <div class="foot-links">
+    <a href="mailto:mahdajharmulla@gmail.com">Email</a>
+    <a href="tel:+918197602254">Phone</a>
+    <a href="https://github.com/azhar2668" target="_blank">GitHub</a>
+    <a href="#about">Back to top &#8593;</a>
+  </div>
+</footer>
+
+<script>
+// ═══ CUSTOM CURSOR ═══
+var cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+document.addEventListener('mousemove',function(e){
+  cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';
+  cur2.style.left=e.clientX+'px';cur2.style.top=e.clientY+'px';
+});
+document.querySelectorAll('a,button,.metric,.skill-card,.cert-card,.ci-item').forEach(function(el){
+  el.addEventListener('mouseenter',function(){cur.style.transform='translate(-50%,-50%) scale(2.5)';cur2.style.transform='translate(-50%,-50%) scale(1.5)';cur2.style.borderColor='rgba(245,158,11,.8)';});
+  el.addEventListener('mouseleave',function(){cur.style.transform='translate(-50%,-50%) scale(1)';cur2.style.transform='translate(-50%,-50%) scale(1)';cur2.style.borderColor='rgba(245,158,11,.4)';});
+});
+
+// ═══ SKILLS DATA ═══
+var skills=[
+  {icon:'&#9881;',name:'CI/CD Pipelines',level:95,tags:['Jenkins','GitLab CI','GitHub Actions','ServiceNow CI/CD']},
+  {icon:'&#9749;',name:'Kubernetes',level:90,tags:['K8s','Helm','ArgoCD','Pod Scaling']},
+  {icon:'&#9749;',name:'Docker',level:92,tags:['Compose','Swarm','Registry','Multi-stage']},
+  {icon:'&#9729;',name:'AWS Cloud',level:90,tags:['EC2','EKS','S3','Lambda','VPC','IAM']},
+  {icon:'&#128295;',name:'Terraform',level:88,tags:['HCL','Modules','State','Workspaces']},
+  {icon:'&#127930;',name:'Ansible',level:85,tags:['Playbooks','Roles','Vault','AWX']},
+  {icon:'&#128203;',name:'ServiceNow ITSM',level:85,tags:['CMDB','MID Server','Flow Designer','ATF']},
+  {icon:'&#128200;',name:'Monitoring & Observability',level:88,tags:['Prometheus','Grafana','ELK','Alertmanager']},
+  {icon:'&#128039;',name:'Python Scripting',level:80,tags:['Automation','APIs','Boto3','Flask']},
+  {icon:'&#128274;',name:'Security & Compliance',level:82,tags:['IAM Policies','RBAC','Vault','SAST']},
+  {icon:'&#9881;',name:'Linux / Systems',level:92,tags:['RHEL','Ubuntu','Shell','Systemd']},
+  {icon:'&#128268;',name:'Networking',level:80,tags:['VPC','DNS','Load Balancers','VPN']},
+];
+var sg=document.getElementById('skillsGrid');
+skills.forEach(function(s,i){
+  var d=document.createElement('div');
+  d.className='skill-card reveal';
+  d.style.transitionDelay=(i*.04)+'s';
+  d.innerHTML='<div class="sk-icon">'+s.icon+'</div>'
+    +'<div class="sk-name">'+s.name+'</div>'
+    +'<div class="sk-bar-wrap"><div class="sk-bar" data-w="'+s.level+'%" style="width:0"></div></div>'
+    +'<div class="sk-tags">'+s.tags.map(function(t){return'<span class="sk-tag">'+t+'</span>';}).join('')+'</div>';
+  sg.appendChild(d);
+});
+
+// ═══ EXPERIENCE DATA ═══
+var exps=[
+  {
+    date:'Aug 2024 — Present',period:'Current Role',
+    co:'ITDaga Consulting Pvt Ltd',role:'Senior Technical Engineer',
+    pts:[
+      'Led CI/CD pipeline engineering using Jenkins, GitLab CI & ServiceNow CI/CD Spoke, reducing deployment time by 45%',
+      'Designed and managed AWS infrastructure with Terraform — cut provisioning time by 60% across 3 product environments',
+      'Orchestrated 50+ microservices on Kubernetes clusters with zero-downtime rolling deployments',
+      'Integrated ServiceNow ITSM with CMDB, MID Server & Flow Designer for automated incident management',
+      'Implemented n8n workflow automation for job monitoring, reducing manual effort by 80%',
+    ],
+    tags:['Jenkins','Kubernetes','AWS','Terraform','ServiceNow','n8n','Docker'],
+  },
+  {
+    date:'Jul 2021 — Jul 2024',period:'3 Years',
+    co:'Tata Consultancy Services',role:'Sr Process Associate — DevOps',
+    pts:[
+      'Built and maintained CI/CD pipelines for 12+ enterprise Java & Node.js applications serving 2M+ users',
+      'Automated infrastructure provisioning with Ansible playbooks — 40% faster deployments',
+      'Implemented Prometheus + Grafana monitoring stack across 200+ servers with custom alerting',
+      'Configured ELK Stack for centralised logging, reducing MTTR by 35%',
+      'Championed container adoption: migrated 8 legacy apps to Docker/K8s architecture',
+    ],
+    tags:['CI/CD','Ansible','Prometheus','Grafana','ELK','Docker','GitLab CI'],
+  },
+  {
+    date:'Dec 2018 — Jan 2021',period:'2.1 Years',
+    co:'Shruti Services',role:'Sr Service Engineer',
+    pts:[
+      'Delivered technical support and infrastructure maintenance ensuring 99.5% uptime SLA',
+      'Automated routine maintenance tasks using Python scripts, saving 15 hours/week',
+      'Implemented monitoring dashboards for client server health and performance metrics',
+    ],
+    tags:['Linux','Python','Monitoring','Windows Server'],
+  },
+  {
+    date:'May 2017 — Oct 2018',period:'1.5 Years',
+    co:'Concentrix India Services Ltd',role:'Sr Technical Service Associate',
+    pts:[
+      'Provided L2/L3 technical support for enterprise clients across APAC region',
+      'Managed Active Directory, DNS, and DHCP for 500+ user environment',
+    ],
+    tags:['Active Directory','DNS','Technical Support','Windows'],
+  },
+];
+var el=document.getElementById('expList');
+exps.forEach(function(e,i){
+  var d=document.createElement('div');
+  d.className='exp-item reveal';
+  d.style.transitionDelay=(i*.1)+'s';
+  d.innerHTML='<div class="exp-date">'+e.date+'<span class="exp-period">'+e.period+'</span></div>'
+    +'<div class="exp-right">'
+    +'<div class="exp-co">'+e.co+'</div>'
+    +'<div class="exp-role">'+e.role+'</div>'
+    +'<div class="exp-pts">'+e.pts.map(function(p){return'<div class="exp-pt">'+p+'</div>';}).join('')+'</div>'
+    +'<div class="exp-tags">'+e.tags.map(function(t){return'<span class="exp-tag">'+t+'</span>';}).join('')+'</div>'
+    +'</div>';
+  el.appendChild(d);
+});
+
+// ═══ CERTIFICATIONS ═══
+var certs=[
+  {badge:'&#9729;',name:'AWS Certified Solutions Architect',issuer:'Amazon Web Services',status:'Active'},
+  {badge:'&#9749;',name:'Certified Kubernetes Administrator (CKA)',issuer:'Cloud Native Computing Foundation',status:'Active'},
+  {badge:'&#128295;',name:'HashiCorp Terraform Associate',issuer:'HashiCorp',status:'Active'},
+  {badge:'&#128203;',name:'ServiceNow ITSM Implementation',issuer:'ServiceNow',status:'Active'},
+  {badge:'&#127984;',name:'Docker Certified Associate',issuer:'Docker Inc.',status:'Active'},
+  {badge:'&#128200;',name:'Certified DevOps Professional',issuer:'DevOps Institute',status:'Active'},
+];
+var cg=document.getElementById('certGrid');
+certs.forEach(function(c,i){
+  var d=document.createElement('div');
+  d.className='cert-card reveal';
+  d.style.transitionDelay=(i*.06)+'s';
+  d.innerHTML='<div class="cert-badge">'+c.badge+'</div>'
+    +'<div class="cert-name">'+c.name+'</div>'
+    +'<div class="cert-issuer">'+c.issuer+'</div>'
+    +'<div class="cert-status"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block"></span>'+c.status+'</div>';
+  cg.appendChild(d);
+});
+
+// ═══ SCROLL REVEAL ═══
+var revEls=document.querySelectorAll('.reveal,.reveal-l');
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vis');}});
+},{threshold:.12});
+revEls.forEach(function(e){obs.observe(e);});
+
+// ═══ SKILL BARS (trigger on scroll) ═══
+var barObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.sk-bar').forEach(function(b){
+        b.style.width=b.getAttribute('data-w');
+      });
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.skill-card').forEach(function(c){barObs.observe(c);});
+
+// ═══ COUNTER ANIMATION ═══
+function countUp(id,target,suffix,duration){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var v=0,step=target/(duration/16);
+  var t=setInterval(function(){
+    v+=step;
+    if(v>=target){v=target;clearInterval(t);}
+    el.textContent=Math.floor(v)+(suffix||'');
+  },16);
+}
+var metricsObs=new IntersectionObserver(function(entries){
+  if(entries[0].isIntersecting){
+    metricsObs.disconnect();
+    countUp('m1',10,'+',1200);
+    countUp('m2',40,'+',1400);
+    countUp('m3',200,'+',1600);
+    countUp('m4',30,'+',1300);
+    countUp('m5',99.5,'%',1800);
+  }
+},{threshold:.5});
+var mEl=document.getElementById('metrics');
+if(mEl)metricsObs.observe(mEl);
+
+// ═══ ACTIVE NAV ═══
+var sections=document.querySelectorAll('section[id],div[id="metrics"]');
+var navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',function(){
+  var scrollY=window.scrollY;
+  sections.forEach(function(sec){
+    var top=sec.offsetTop-120,h=sec.offsetHeight;
+    if(scrollY>=top&&scrollY<top+h){
+      navLinks.forEach(function(a){
+        a.style.color=a.getAttribute('href')==='#'+sec.id?'var(--amber)':'';
+      });
+    }
+  });
+},{passive:true});
+</script>
+</body>
+</html>
